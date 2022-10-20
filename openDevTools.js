@@ -39,5 +39,5 @@ childProcess.stdout.on('data', function (data) {
 })
 
 childProcess.stderr.on('data', function (data) {
-  console.log('stderr: ' + data)
+  // console.log('stderr: ' + data)
 })

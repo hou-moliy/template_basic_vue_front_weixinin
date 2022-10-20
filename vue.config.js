@@ -31,8 +31,6 @@ replaceManifest('mp-weixin.appid', `"${process.env.VUE_APP_ID}"`)
 fs.writeFileSync(manifestPath, Manifest, {
 	"flag": "w"
 })
-// 非测试环境不展示Vconsole
-const vConsolePlugin = require('vconsole-webpack-plugin')
 // 代码压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
@@ -40,6 +38,7 @@ module.exports = {
 	assetsDir: "static",
 	// 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
 	productionSourceMap: false,
+	lintOnSave:true,
 	css: {
 		loaderOptions: {
 			sass: {
@@ -61,20 +60,12 @@ module.exports = {
 		],
 	},
 	configureWebpack: config => {
-		//生产环境去掉vconsole调试器
-		let envType = process.env.NODE_ENV != 'prod'
-		let pluginsDev = [
-			new vConsolePlugin({
-				filter: [],
-				enable: envType
-			})
-		]
-		config.plugins.push(
-			new UglifyJsPlugin({
-				sourceMap: true,   //关掉sourcemap 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
-				parallel: true, //使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1。
-			}),
-		)
-		config.plugins = [...config.plugins, ...pluginsDev]
+		// config.plugins.push(
+		// 	new UglifyJsPlugin({
+		// 		sourceMap: true,   //关掉sourcemap 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
+		// 		parallel: true, //使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1。
+		// 	}),
+		// )
+		// config.plugins = [...config.plugins]
 	}
 }

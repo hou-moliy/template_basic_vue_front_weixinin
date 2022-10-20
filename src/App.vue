@@ -3,6 +3,7 @@
 </template>
 <script>
 export default {
+  name: "App",
   onLaunch: function () {
     console.log("App Launch");
   },

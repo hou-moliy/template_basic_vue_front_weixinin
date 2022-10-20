@@ -2,6 +2,9 @@
 node_modules/
 unpackage/
 dist/
+openDevTools/
+src/manifest.json
+.automator
 
 # local env files
 .env.local

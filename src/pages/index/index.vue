@@ -1,6 +1,7 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png"></image>
+    <image class="logo"
+           src="/static/logo.png"></image>
     <view>
       <text class="title">{{ title }}</text>
     </view>
@@ -10,13 +11,12 @@
 <script>
 export default {
   name: "Index",
-  data() {
+  data () {
     return {
       title: "Hello",
     };
   },
-  onLoad() {
-    console.log(a);
+  onLoad () {
   },
   methods: {},
 };

@@ -3,7 +3,7 @@ node_modules/
 unpackage/
 dist/
 openDevTools/
-src/manifest.json
+/src/manifest.json
 .automator
 
 # local env files

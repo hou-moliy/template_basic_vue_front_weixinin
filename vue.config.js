@@ -1,6 +1,6 @@
 // 读取 manifest.json ，修改后重新写入
 const fs = require("fs");
-
+const path = require("path");
 // 不要修改本段内容！！！
 const manifestPath = "./src/manifest.json";
 let Manifest = fs.readFileSync(manifestPath, { encoding: "utf-8" });
@@ -10,15 +10,19 @@ function replaceManifest (path, value) {
   const lastItem = arr[len - 1];
   let i = 0;
   const ManifestArr = Manifest.split(/\n/);
-  for (let item of ManifestArr) {
+  for (const item of ManifestArr) {
     if (new RegExp(`"${arr[i]}"`).test(item)) ++i;
     if (i === len) {
       const hasComma = /,/.test(item);
-      item = item.replace(new RegExp(`"${lastItem}"[\\s\\S]*:[\\s\\S]*`), `"${lastItem}": ${value}${hasComma ? "," : ""}`);
+      item.replace(new RegExp(`"${lastItem}"[\\s\\S]*:[\\s\\S]*`), `"${lastItem}": ${value}${hasComma ? "," : ""}`);
       break;
     }
   }
   Manifest = ManifestArr.join("\n");
+}
+
+function resolve (dir) {
+  return path.join(__dirname, dir);
 }
 
 // 修改需要替换manifest.json文件中的内容
@@ -55,7 +59,24 @@ module.exports = {
       "hdhtest.nat300.top",
     ],
   },
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set("@", resolve("src"))
+      .set("assets", resolve("src/assets"))
+      .set("components", resolve("src/components"))
+      .set("views", resolve("src/views"));
+    config.module
+      .rule("worker")
+      .test(/\.worker\.js$/)
+      .use("worker-loader").loader("worker-loader")
+      .options({
+        inline: true,
+        fallback: false,
+      }).end();
+  },
   configureWebpack: config => {
+    // 可以省略后缀
+    config.resolve.extensions = [".js", ".vue", ".json"];
     config.plugins.push(
       new UglifyJsPlugin({
         sourceMap: true, // 关掉sourcemap 会生成对于调试的完整的.map文件，但同时也会减慢打包速度

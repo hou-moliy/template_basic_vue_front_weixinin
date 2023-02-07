@@ -3,9 +3,17 @@
   "editor.formatOnType": true,
   "eslint.format.enable": true, // 启用ESLint作为格式化器
   "editor.codeActionsOnSave": {
+    // 使用eslint来fix，包括格式化会自动fix和代码质量检查会给出错误提示
     "source.fixAll.eslint": true
   },
-  "eslint.validate": ["javascript", "javascriptreact", "html", "vue"],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "vue"
+  ],
   // 让函数(名)和后面的括号之间加个空格
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
@@ -49,5 +57,6 @@
   "codemetrics.basics.ComplexityTemplate": "圈复杂度为 {0}，{1}",
   "codemetrics.basics.ComplexityColorExtreme": "#ff0000",
   "codemetrics.basics.ComplexityColorHigh": "#e6a23c",
-  "codemetrics.basics.ComplexityColorNormal": "#4bb14f"
+  "codemetrics.basics.ComplexityColorNormal": "#4bb14f",
+  // 代码检查结束
 }

@@ -1,8 +1,8 @@
 {
-  "name": "{{name}}",
+  "name": "name",
   "version": "0.1.0",
-   "description": "{{description}}",
-  "author": "{{author}}",
+  "description": "description",
+  "author": "author",
   "private": true,
   "scripts": {
     "serve": "npm run serve:dev",
@@ -55,16 +55,21 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.1-36420220922003",
     "@dcloudio/uni-stacktracey": "^2.0.1-36420220922003",
     "@dcloudio/uni-stat": "^2.0.1-36420220922003",
+    "@vue/babel-preset-app": "^5.0.8",
     "@vue/shared": "^3.0.0",
     "autoprefixer": "^8.0.0",
+    "axios": "^0.21.1",
+    "babel-loader": "^9.1.0",
     "core-js": "^3.8.3",
     "flyio": "^0.6.2",
     "miniprogram-ci": "^1.8.0",
+    "qs": "^6.9.4",
     "regenerator-runtime": "^0.12.1",
     "sass": "^1.55.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.14",
-    "vuex": "^3.2.0"
+    "vuex": "^3.2.0",
+    "wxmp-rsa": "^2.1.0"
   },
   "devDependencies": {
     "@babel/runtime": "~7.17.9",

@@ -3,7 +3,6 @@
 // 先获取微信开发者工具安装路径
 const config = require("./openDevTools/config.js");
 const WEIXIN_DEVTOOLS_PATH = config.weixin.path;
-
 // 执行vue-cli编译命令
 const path = require("path");
 const shell = require("shelljs");
@@ -15,10 +14,8 @@ const WEIXIN_PROJECT_PATH = "dist";
 const WEIXIN_PRESET_PATH = path.resolve(PRESET_PATH, WEIXIN_PROJECT_PATH);
 const PROJECT = path.resolve(WEIXIN_PRESET_PATH, "./project.config.json");
 const EXEC_CODE = `npx cross-env UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch  --mode ${process.env.NODE_ENV}`;
-
 shell.cd(PRESET_PATH); // 先进入项目目录
 const childProcess = shell.exec(EXEC_CODE, { async: true });
-
 childProcess.stdout.on("data", function (data) {
   if (data.match("Build complete")) {
     console.log("微信小程序编译成功", process.env.APP_Id);
@@ -35,5 +32,5 @@ childProcess.stdout.on("data", function (data) {
 });
 
 childProcess.stderr.on("data", function (data) {
-  // console.log('stderr: ' + data)
+  // console.log("stderr: " + data);
 });
